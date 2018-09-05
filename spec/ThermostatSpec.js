@@ -10,6 +10,19 @@ describe('Thermostat', function() {
       expect(thermostat.temperature).toEqual(20)
     });
   });
+    
+  describe('#powerSaving', function() {
+    it('is on by default', function() {
+      expect(thermostat.powerSaving).toEqual(true);
+    });
+  });
+    
+  describe('#powerSavingSwitch', function() {
+    it('changes powerSaving mode from on to off', function() {
+      thermostat.powerSavingSwitch();
+      expect(thermostat.powerSaving).toEqual(false);
+    });
+  });
 
   describe('#increase', function() {
     it('increases the temperature', function() {
