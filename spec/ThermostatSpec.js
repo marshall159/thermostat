@@ -25,6 +25,17 @@ describe('Thermostat', function() {
         expect(thermostat.powerSaving).toEqual(true);
       })
     })
+    describe('powerSaving is off', function() {
+      it('maximum temperature is 32 degrees', function() {
+        thermostat.powerSavingSwitch()
+        while (thermostat.temperature < 32) {
+          thermostat.increase();
+        }
+        thermostat.increase()
+        expect(thermostat.temperature).toEqual(32)
+        expect(thermostat.powerSaving).toEqual(false);
+      })
+    })
   });
     
   describe('#powerSavingSwitch', function() {

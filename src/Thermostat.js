@@ -5,8 +5,12 @@ function Thermostat(temp = 20) {
 }
 
 Thermostat.prototype.increase = function() {
-  if(this.powerSaving && this.temperature < 25) {
-    this.temperature += 1; 
+  if(this.powerSaving && this.temperature >= 25) {
+    return 'canot raise' 
+  } else if (this.powerSaving === false && this.temperature >= 32) {
+      return 'cannot raise'
+  } else {
+    this.temperature += 1;
   }
 };
 
