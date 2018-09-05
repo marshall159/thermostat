@@ -1,14 +1,18 @@
 describe('Thermostat', function() {
-
-  describe('#temperature', function() {
-    var thermostat = new Thermostat()
-    it('returns the start temperature', function() {
-      expect(thermostat.temperature).toEqual(20)
+    let thermostat = new Thermostat();
+    
+    describe('#temperature', function() {
+      
+        it('returns the start temperature', function() {
+          expect(thermostat.temperature).toEqual(20)
+        });
     });
-  });
 
-  // describe('#temperature', function() {
-
-  // });
+   describe('#increase', function() {
+       it('increases the temperature', function() {
+           thermostat.increase();
+           expect(thermostat.temperature).toEqual(21)
+       });
+   });
 
 });
