@@ -1,4 +1,7 @@
+'use strict';
+
 describe('Thermostat', function() {
+  
   let thermostat;
   
   beforeEach(function() {
@@ -74,7 +77,20 @@ describe('Thermostat', function() {
       expect(thermostat.temperature).toEqual(20);
     });
   });
-
-  
+    
+    describe('#energyUsage', function() {
+        it('low usage is under 18 degrees', function() {
+            thermostat = new Thermostat(15);
+            expect(thermostat.energyUsage()).toEqual('low-usage')
+        });
+        it('medium-usage is under 25 degrees', function() {
+            thermostat = new Thermostat();
+            expect(thermostat.energyUsage()).toEqual('medium-usage')
+        });
+        it('high-usage is 25 degrees and over', function() {
+            thermostat = new Thermostat(25);
+            expect(thermostat.energyUsage()).toEqual('high-usage')
+        });
+    });
 
 });
