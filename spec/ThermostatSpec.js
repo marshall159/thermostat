@@ -10,7 +10,7 @@ describe('Thermostat', function() {
     
   describe('#temperature', function() {
     it('returns the start temperature', function() {
-      expect(thermostat.temperature).toEqual(20)
+      expect(thermostat.getTemperature()).toEqual(20)
     });
   });
     
@@ -20,22 +20,22 @@ describe('Thermostat', function() {
     });
     describe('powerSaving is on', function() {
       it('maximum temperature is 25 degrees', function() {
-        while (thermostat.temperature < 25) {
+        while (thermostat.getTemperature() < thermostat.MAX_LIMIT_PSM_ON) {
           thermostat.increase();
         }
         thermostat.increase()
-        expect(thermostat.temperature).toEqual(25)
+        expect(thermostat.getTemperature()).toEqual(25)
         expect(thermostat.powerSaving).toEqual(true);
       })
     })
     describe('powerSaving is off', function() {
       it('maximum temperature is 32 degrees', function() {
         thermostat.powerSavingSwitch()
-        while (thermostat.temperature < 32) {
+        while (thermostat.getTemperature() < thermostat.MAX_LIMIT_PSM_OFF) {
           thermostat.increase();
         }
         thermostat.increase()
-        expect(thermostat.temperature).toEqual(32)
+        expect(thermostat.getTemperature()).toEqual(32)
         expect(thermostat.powerSaving).toEqual(false);
       })
     })
@@ -51,22 +51,22 @@ describe('Thermostat', function() {
   describe('#increase', function() {
     it('increases the temperature', function() {
         thermostat.increase();
-        expect(thermostat.temperature).toEqual(21)
+        expect(thermostat.getTemperature()).toEqual(21)
     });
   });
   
   describe('#decrease', function() {
     it('dereases the temperature', function() {
         thermostat.decrease();
-        expect(thermostat.temperature).toEqual(19)
+        expect(thermostat.getTemperature()).toEqual(19)
     });
     it('won\'t decrease temperature below the minimum', function() {
-      while (thermostat.temperature > 10) {
+      while (thermostat.getTemperature() > thermostat.MINIMUM_TEMPERATURE) {
         thermostat.decrease();
     }
       thermostat.decrease()
       thermostat.decrease()
-      expect(thermostat.temperature).toEqual(10);
+      expect(thermostat.isMinimumTemperature()).toEqual(true);
     });
   });
 
@@ -74,7 +74,7 @@ describe('Thermostat', function() {
     it('resets the temperature', function() {
       thermostat.increase();
       thermostat.reset();
-      expect(thermostat.temperature).toEqual(20);
+      expect(thermostat.getTemperature()).toEqual(20);
     });
   });
     
