@@ -12,10 +12,10 @@ function Thermostat(temp = 20) {
 
 Thermostat.prototype.increase = function() {
   if(this.powerSaving && this.getTemperature() < this.MAX_LIMIT_PSM_ON) {
-    this.temperature += 1; 
+    this.temperature += 1;
   }
   if (!this.powerSaving && this.getTemperature() < this.MAX_LIMIT_PSM_OFF) {
-      this.temperature += 1; 
+      this.temperature += 1;
   }
 };
 
@@ -52,4 +52,3 @@ Thermostat.prototype.getTemperature = function() {
 Thermostat.prototype.isMinimumTemperature = function() {
   return this.temperature === this.MINIMUM_TEMPERATURE;
 }
-
