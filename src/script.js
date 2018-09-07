@@ -16,7 +16,11 @@ $(document).ready(function() {
     });
     $('button').click(function() {
         $('#display').text(t.getTemperature());
+        $('#energySaving').attr('class', t.energyUsage());
+        
+        
     });
+    
     
     
     

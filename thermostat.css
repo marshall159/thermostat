@@ -1,4 +1,12 @@
-#display {
-
-  
+.low-usage {
+    color: greenyellow;
 }
+
+.medium-usage {
+    color: grey;
+}
+
+.high-usage {
+    color: red;
+}
+
